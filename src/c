@@ -1,0 +1,19 @@
+curl "https://api.shutterstock.com/v2/oauth/authorize" \
+ --get \
+ --data-urlencode "scope=licenses.create licenses.view purchases.view" \
+ --data-urlencode "state=demo_`date +%s`" \
+ --data-urlencode "response_type=code" \
+ --data-urlencode "redirect_uri=http://localhost:3000/callback" \
+ --data-urlencode "client_id=f08ac09a598f937a83aa"
+
+ http://localhost:3000/callback?code=n9-oP4xCFlpToqwlIXHr4t&state=demo_1486269170
+
+ curl "https://api.shutterstock.com/v2/oauth/access_token" \
+  -X POST \
+  --data-urlencode "client_id=f08ac09a598f937a83aa" \
+  --data-urlencode "client_secret=282fdf2174876ef0588467f989d01d69bf8ce5c5" \
+  --data-urlencode "grant_type=authorization_code" \
+  --data-urlencode "code=n9-oP4xCFlpToqwlIXHr4t"
+
+  {"access_token":"v2/ZjA4YWMwOWE1OThmOTM3YTgzYWEvMTcwOTA4ODg0L2N1c3RvbWVyLzIvUk0wWmxxMHdPQkhnZmFnRGhidTIxY2RCeFdxVTZ6cW5CNGVhRkgwSF9sYkdaN3llbm5ZQ1cxYUMwR09RWWdHYkl2MWluWkNXQmVzenlaYm9tUXdqSjdpWk5RSmczNlN5QzZpMnV4N2lEdUdKcWxwYmx4dUZydk02ZXBiUlpXS1Eyd2tXREJVOC1PSjM1T3FPcmVjSFNiWmJraXJJV0c5aEM5MXZlMGROWXJhZ0k5NG9lejJkZnFmMVVDM05JRG51",
+  "token_type":"Bearer"}
