@@ -3,9 +3,13 @@
  */
 import { takeLatest } from "redux-saga/effects";
 
-import { SEARCH_MEDIA_REQUEST } from "../actions/actionTypes";
-import { searchMediaSaga } from "./mediaSaga";
+import { SEARCH_MEDIA_REQUEST, SEARCH_MEDIA_ERROR } from "../actions/actionTypes";
+import { searchMediaSaga, searchMediaErrorSaga } from "./mediaSaga";
 
-export default function* watchSearchMedia() {
+export function* watchSearchMedia() {
     yield takeLatest(SEARCH_MEDIA_REQUEST, searchMediaSaga);
+}
+
+export function* watchSearchError() {
+    yield takeLatest(SEARCH_MEDIA_ERROR, searchMediaErrorSaga);
 }

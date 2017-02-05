@@ -28,3 +28,7 @@ export function* searchMediaSaga({ payload }) {
         yield put({ type: SEARCH_MEDIA_ERROR, error });
     }
 }
+
+export function* searchMediaErrorSaga({ payload }) {
+    console.log(payload, "Error");
+}
