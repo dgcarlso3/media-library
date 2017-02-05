@@ -3,10 +3,8 @@
  */
 import { put, call } from "redux-saga/effects";
 
-import {
-    shutterStockVideos,
-    flickrImage
-} from "../Api/api"
+import { shutterStockVideo } from "../api/shutterStockVideo";
+import { flickrImage } from "../api/flickrImage";
 import { SEARCH_MEDIA_ERROR } from "../actions/actionTypes";
 import {
     SHUTTER_VIDEOS_SUCCESS,
@@ -18,7 +16,7 @@ import {
 export function* searchMediaSaga({ payload }) {
     console.log(payload, "Payload");
     try {
-        const videos = yield call(shutterStockVideos, payload);
+        const videos = yield call(shutterStockVideo, payload);
         const images = yield call(flickrImage, payload);
         yield [
             put({ type: SHUTTER_VIDEOS_SUCCESS, videos }),
