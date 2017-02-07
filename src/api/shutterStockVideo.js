@@ -23,6 +23,7 @@ export const shutterStockVideo = (searchQuery) => {
         .then(json => {return json.data.map( ({id, assets, description}) => ({
             id,
             mediaUrl: assets.preview_mp4.url,
+            thumbnail: assets.thumb_jpg.url,
             description
         }));
         })

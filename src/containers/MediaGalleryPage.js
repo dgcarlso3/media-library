@@ -9,11 +9,17 @@ import {
     selectedImageAction,
     selectedVideoAction
 } from "../actions/mediaActions";
-import PhotoPage from '../components/Photos';
-import Videos from '../components/Videos';
-import '../../public/styles.css';
+import Books from "../components/Books";
+import Videos from "../components/Videos";
+import SearchBar from "../components/SearchBar";
+
+import "../../public/styles.css";
 
 class MediaGalleryPage extends Component {
+    constructor() {
+        super();
+        this.state = {};
+    }
 
     componentDidMount() {
         this.props.dispatch(searchMediaAction(""));
@@ -25,10 +31,11 @@ class MediaGalleryPage extends Component {
 
     handleSearch(event) {
         event.preventDefault();
-        if (this.query) {
-            this.props.dispatch(searchMediaAction(this.query.value));
-            this.query.value = '';
-        }
+        this.props.dispatch(searchMediaAction(this.state.queryText));
+    }
+
+    handleSearchQueryChange(event) {
+        this.setState({ queryText: event.target.value });
     }
 
     handleSelectImage(selectedImage) {
@@ -42,10 +49,10 @@ class MediaGalleryPage extends Component {
     renderPhotos({images, selectedImage}) {
         if (images && selectedImage) {
             return (
-                <PhotoPage
+                <Books
                     images={images}
                     selectedImage={selectedImage}
-                    onHandleSelectImage={this.handleSelectImage.bind(this)}
+                    handleSelectImage={this.handleSelectImage.bind(this)}
                 />
             );
         } else {
@@ -59,7 +66,7 @@ class MediaGalleryPage extends Component {
                 <Videos
                     videos={videos}
                     selectedVideo={selectedVideo}
-                    onHandleSelectVideo={this.handleSelectVideo.bind(this)}
+                    handleSelectVideo={this.handleSelectVideo.bind(this)}
                 />
             );
         } else {
@@ -73,18 +80,13 @@ class MediaGalleryPage extends Component {
         console.log(this.props.selectedImage, "Selected Image");
         console.log(this.props.selectedVideo, "Selected Video");
         const {images, videos, selectedImage, selectedVideo} = this.props;
+
         return (
             <div id="MediaGalleryPage" className="container-fluid">
                 <div className="row">
-                    <input
-                        type="text"
-                        ref={ref => (this.query = ref)}
-                    />
-                    <input
-                        type="submit"
-                        className="btn btn-primary"
-                        value="Search Library"
-                        onClick={this.handleSearch.bind(this)}
+                    <SearchBar
+                        handleSearchQueryChange={this.handleSearchQueryChange.bind(this)}
+                        handleSubmitSearch={this.handleSearch.bind(this)}
                     />
                 </div>
                 <div className="row">

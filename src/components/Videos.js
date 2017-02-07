@@ -3,7 +3,7 @@
  */
 import React, { PropTypes } from "react";
 
-const Videos = ({ videos, onHandleSelectVideo, selectedVideo }) => (
+const Videos = ({ videos, handleSelectVideo, selectedVideo }) => (
     <div id="Videos" className="col-md-6">
         <h2> Videos </h2>
         <div className="select-video">
@@ -14,8 +14,8 @@ const Videos = ({ videos, onHandleSelectVideo, selectedVideo }) => (
         </div>
         <div className="video-thumbnail">
             {videos.map((video, i) => (
-                <div key={i} onClick={onHandleSelectVideo.bind(this, video)}>
-                    <video controls src={video.mediaUrl} alt={video.description} />
+                <div key={i} onClick={handleSelectVideo.bind(this, video)}>
+                    <img src={video.thumbnail} alt={video.description}/>
                 </div>
             ))}
         </div>
@@ -25,7 +25,7 @@ const Videos = ({ videos, onHandleSelectVideo, selectedVideo }) => (
 Videos.propTypes = {
     videos: PropTypes.array.isRequired,
     selectedVideo: PropTypes.object,
-    onHandleSelectVideo: PropTypes.func.isRequired
+    handleSelectVideo: PropTypes.func.isRequired
 };
 
 export default Videos;

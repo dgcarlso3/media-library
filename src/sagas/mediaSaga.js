@@ -30,5 +30,5 @@ export function* searchMediaSaga({ payload }) {
 }
 
 export function* searchMediaErrorSaga({ payload }) {
-    console.log(payload, "Error");
+    yield console.log(payload, "Error");
 }

@@ -9,5 +9,5 @@ export default function* rootSaga() {
     yield [
         fork(watchSearchMedia),
         fork(watchSearchError)
-    ]   ;
+    ];
 }

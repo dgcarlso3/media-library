@@ -28,7 +28,7 @@ body {
     overflow-y: hidden;
 }
 
-.image-thumbnail img, .video-thumbnail video {
+.image-thumbnail img, .video-thumbnail img {
     width: 70px;
     height: 70px;
     padding: 1px;
